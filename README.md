@@ -1,17 +1,7 @@
 # Stryker
-# ✂️ STRYKER // collage engine
-
-```
-   ██████  ████████ ██████  ██    ██ ██   ██ ███████ ██████  
-  ██          ██    ██   ██  ██  ██  ██  ██  ██      ██   ██ 
-  ███████     ██    ██████    ████   █████   █████   ██████  
-       ██     ██    ██   ██    ██    ██  ██  ██      ██   ██ 
-  ██████      ██    ██   ██    ██    ██   ██ ███████ ██   ██ 
-```
-
 > [!NOTE]
-> **[ ISSUE #01 // LOCALHOST ]** 
-> A decoupled sports-zine dashboard. Headless Java engine calculations $\rightarrow$ WebSocket telemetry pipeline $\rightarrow$ Screenprinted HTML5 Canvas viewports.
+> **[ ISSUE #01 // LOCALHOST ]**
+> A decoupled sports-zine dashboard. Headless Java engine calculations → WebSocket telemetry pipeline → Screenprinted HTML5 Canvas viewports.
 
 ---
 
@@ -35,19 +25,19 @@
 
 ```mermaid
 graph LR
-    subgraph Java Math Authority (60Hz)
+    subgraph JavaCore["Java Math Authority (60Hz)"]
         A[MatchLoop Scheduler] -->|Apply Physics| B(Physics Engine)
-        B -->|Constrain Bounds| C[Player & Ball Entity Models]
+        B -->|Constrain Bounds| C[Player and Ball Entity Models]
     end
-    
+
     C -->|Telemetry Serialization| D[WebSocket Broadcast Server]
-    D ==>|ws://localhost:8080| E[JavaScript Pipeline]
-    
-    subgraph Frontend Collage Canvas
+    D -->|"ws://localhost:8080"| E[JavaScript Pipeline]
+
+    subgraph FrontendCanvas["Frontend Collage Canvas"]
         E -->|Map Coordinates| F[Halftone Ball / Player Stamps]
-        E -->|Track Metrics| G[Possession & Chronicle Logs]
+        E -->|Track Metrics| G[Possession and Chronicle Logs]
     end
-    
+
     style A fill:#3B7A57,stroke:#1E3B2B,color:#F4F1EA
     style D fill:#E63946,stroke:#1E3B2B,color:#F4F1EA
     style F fill:#FFB703,stroke:#1E3B2B,color:#0A0A0A
@@ -76,18 +66,20 @@ graph LR
 
 ### 🏃‍♂️ PLAYER FORMATION AI
 Each player follows a dynamic vector destination based on base formations:
-- **Pressing Trigger**: If the opponent team controls the ball, the closest defender shifts target coordinates directly to the ball's $(x, y)$ coordinate:
-  $$d = \sqrt{(x_{\text{player}} - x_{\text{ball}})^2 + (y_{\text{player}} - y_{\text{ball}})^2}$$
-- **Passing Matrix**: Ball carrier has a **1% probability** per tick to initiate a pass, locating the nearest teammate further upfield.
-- **Tackling Frequency**: A proximity check trigger evaluates if distance $d < r_{\text{player}} + r_{\text{opponent}} + 0.8$. If true, there is a **3% chance per tick** of a turnover (`STEAL`).
+
+- **Pressing Trigger**: If the opponent team controls the ball, the closest defender shifts target coordinates directly to the ball's `(x, y)` coordinate:
+- - **Passing Matrix**: Ball carrier has a **1% probability** per tick to initiate a pass, locating the nearest teammate further upfield.
+- **Tackling Frequency**: A proximity check trigger evaluates if distance `d < r_player + r_opponent + 0.8`. If true, there is a **3% chance per tick** of a turnover (`STEAL`).
 
 ---
 
 ## ✂️ FRONTEND DESIGN BLUEPRINT (COLLAGE ESSENTIALS)
-- **Halftone Ball Filter**: Clips the ball circle, paints it **Marker Yellow (#FFB703)**, and stamps a repeating matrix grid of **Ink Black (#0A0A0A)** dots spaced $4.5px$ apart.
-- **Screenprint Bleed lines**: Pitch boundaries are double-drawn with randomized sub-pixel noise to replicate manual screenprint offsets.
-- **Highlighter Trail**: Ball coordinates are logged to a trail array of size $100$ and rendered as fading, yellow highlighter strokes:
-  `ctx.strokeStyle = "rgba(255, 183, 3, opacity)"`
+- **Halftone Ball Filter**: Clips the ball circle, paints it **Marker Yellow (#FFB703)**, and stamps a repeating matrix grid of **Ink Black (#0A0A0A)** dots spaced 4.5px apart.
+- **Screenprint Bleed Lines**: Pitch boundaries are double-drawn with randomized sub-pixel noise to replicate manual screenprint offsets.
+- **Highlighter Trail**: Ball coordinates are logged to a trail array of size 100 and rendered as fading, yellow highlighter strokes:
+```js
+  ctx.strokeStyle = "rgba(255, 183, 3, opacity)";
+```
 
 ---
 
@@ -98,7 +90,7 @@ Navigate to the headless engine folder, download dependencies, and start the 60H
 ```bash
 cd stryker-backend
 bash download_libs.sh      # Get Gson & Java-WebSocket
-bash compile_and_test.sh   # Run units tests
+bash compile_and_test.sh   # Run unit tests
 bash compile_and_run.sh    # Starts server on port 8080
 ```
 
@@ -112,8 +104,9 @@ open stryker-frontend/index.html
 
 ```text
   [!] TECHNICAL NOTE
-  By separation of state calculations (60Hz thread scheduler in Java) from 
-  visual drawing ticks (RequestAnimationFrame in JS), the simulation keeps 
+  By separating state calculations (60Hz thread scheduler in Java) from
+  visual drawing ticks (RequestAnimationFrame in JS), the simulation keeps
   consistent coordinate updates regardless of browser rendering load.
 ```
+
 A decoupled football simulation engine that processes 2D physics vector math at 60Hz in Java and streams real-time telemetry to a retro, paper-textured zine collage dashboard.
