@@ -1,6 +1,5 @@
 # Stryker
 > [!NOTE]
-> **[ ISSUE #01 // LOCALHOST ]**
 > A decoupled sports-zine dashboard. Headless Java engine calculations → WebSocket telemetry pipeline → Screenprinted HTML5 Canvas viewports.
 
 ---
