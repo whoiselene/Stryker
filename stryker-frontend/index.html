@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="STRYKER: A high-fidelity football physics simulation and real-time collage dashboard streaming telemetry from a Java backend.">
+    <title>STRYKER // High-Fidelity Football Engine & Collage UI</title>
+    
+    <!-- Google Fonts for Editorial Retro Zine theme -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Playfair+Display:ital,wght@0,700;1,400&family=Outfit:wght@400;700;900&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/layout.css">
+</head>
+<body>
+    <!-- Screenprint Paper Texture Overlay -->
+    <div class="paper-texture"></div>
+
+    <div class="zine-wrapper">
+        <!-- Main Collage Header -->
+        <header class="zine-header">
+            <div class="header-stamp">
+                <span class="issue-no">ISSUE #01 // LOCALHOST</span>
+                <span class="date-stamp">JULY 2026</span>
+            </div>
+            <h1 class="main-title">STRYKER</h1>
+            <p class="subtitle">HIGH-FIDELITY FOOTBALL ENGINE & MULTIMEDIA COLLAGE UI</p>
+            <div class="connection-status-tag disconnected" id="connection-status">
+                WS DISCONNECTED
+            </div>
+        </header>
+
+        <!-- Match Layout Grid -->
+        <main class="zine-grid">
+            
+            <!-- Left Pitch Column -->
+            <section class="pitch-container paper-card">
+                <div class="card-header">
+                    <span class="marker-yellow">LIVE TELEMETRY FEED // 60HZ</span>
+                    <h2 class="section-title">THE FIELD OF PLAY</h2>
+                </div>
+                <div class="canvas-wrapper">
+                    <!-- Football Pitch Canvas -->
+                    <canvas id="pitchCanvas" width="1000" height="600"></canvas>
+                </div>
+                <div class="pitch-legend">
+                    <div class="legend-item"><span class="legend-dot alpha-dot"></span> TEAM ALPHA (WHITE STAMPS)</div>
+                    <div class="legend-item"><span class="legend-dot beta-dot"></span> TEAM BETA (BLACK BLOCKS)</div>
+                    <div class="legend-item"><span class="legend-dot ball-dot"></span> HALFTONE BALL</div>
+                </div>
+            </section>
+
+            <!-- Right Editorial Sidebar -->
+            <aside class="sidebar-container">
+                
+                <!-- Scoreboard Scrap -->
+                <div class="scoreboard-card paper-card">
+                    <h3 class="scrap-title">MATCH SCORE</h3>
+                    <div class="scores">
+                        <div class="score-team alpha">
+                            <span class="team-name">ALPHA</span>
+                            <span class="team-score" id="score-alpha">0</span>
+                        </div>
+                        <div class="score-divider">:</div>
+                        <div class="score-team beta">
+                            <span class="team-name">BETA</span>
+                            <span class="team-score" id="score-beta">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Event Alert Paper Scrap -->
+                <div class="alert-scrap" id="alert-scrap">
+                    <div class="alert-bg-stripe"></div>
+                    <div class="alert-content">
+                        <span class="alert-badge">EVENT MATCH_START</span>
+                        <p class="alert-message" id="alert-message">Waiting for connection...</p>
+                    </div>
+                </div>
+
+                <!-- Match Stats Scrap -->
+                <div class="stats-card paper-card">
+                    <h3 class="section-title text-underlined">SIMULATION STATS</h3>
+                    <table class="stats-table">
+                        <thead>
+                            <tr>
+                                <th>ALPHA</th>
+                                <th>METRIC</th>
+                                <th>BETA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="stat-alpha-possession">50%</td>
+                                <td>POSSESSION</td>
+                                <td id="stat-beta-possession">50%</td>
+                            </tr>
+                            <tr>
+                                <td id="stat-alpha-passes">0</td>
+                                <td>PASSES</td>
+                                <td id="stat-beta-passes">0</td>
+                            </tr>
+                            <tr>
+                                <td id="stat-alpha-shots">0</td>
+                                <td>SHOTS</td>
+                                <td id="stat-beta-shots">0</td>
+                            </tr>
+                            <tr>
+                                <td id="stat-alpha-tackles">0</td>
+                                <td>STEALS</td>
+                                <td id="stat-beta-tackles">0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="tick-counter">
+                        TICK CLOCK: <span id="tick-clock">0</span>
+                    </div>
+                </div>
+
+                <!-- Event Feed Ticker -->
+                <div class="ticker-card paper-card">
+                    <h3 class="section-title">CHRONICLE FEED</h3>
+                    <div class="feed-wrapper" id="event-feed-list">
+                        <!-- Feed messages appended here -->
+                        <div class="feed-item">Welcome to STRYKER. Boot the Java Backend to begin simulation.</div>
+                    </div>
+                </div>
+            </aside>
+        </main>
+
+        <footer class="zine-footer">
+            <div class="footer-block">
+                <strong>ARCHITECTURAL NOTE:</strong> By decoupling the physics pipeline (60Hz thread executor on Java) from browser visual loop (RequestAnimationFrame in JS), telemetry processes independently of browser CPU spikes.
+            </div>
+            <div class="credits">
+                STRYKER COLLAGE ENGINE v1.0 // PROJECT WORK
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

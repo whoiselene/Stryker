@@ -1,0 +1,470 @@
+/* STRYKER DESIGN SYSTEM: RETRO ZINE & SCREENPRINT PAPER COLLAGE */
+
+:root {
+    --bg-moss: #3B7A57;       /* Field Moss Green */
+    --bg-forest: #1E3B2B;     /* Grid Frame Forest Shadow */
+    --team-alpha: #FFFFFF;    /* Newsprint Clean White */
+    --team-beta: #0A0A0A;     /* Newsprint Ink Black */
+    --alert-crimson: #E63946; /* Torn Crimson Scrap */
+    --accent-yellow: #FFB703; /* Highlighter Yellow Marker */
+    --desk-dark: #121814;     /* Dark editorial work table backdrop */
+    --paper-white: #F4F1EA;   /* Textured paper scrap base */
+}
+
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--desk-dark);
+    color: var(--team-beta);
+    font-family: 'Outfit', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    padding: 20px;
+}
+
+/* Screenprint Paper Texture Overlay */
+.paper-texture {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.08;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Wrapper Layout */
+.zine-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Zine Header */
+.zine-header {
+    background-color: var(--paper-white);
+    padding: 30px;
+    border: 4px solid var(--team-beta);
+    box-shadow: 8px 8px 0px var(--bg-forest);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transform: rotate(-0.5deg);
+}
+
+.header-stamp {
+    display: flex;
+    gap: 15px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: var(--bg-forest);
+    border-bottom: 2px dashed var(--bg-forest);
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.main-title {
+    font-size: 4.5rem;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+    text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.15);
+    color: var(--team-beta);
+}
+
+.subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    margin-top: 5px;
+    color: var(--bg-forest);
+}
+
+.connection-status-tag {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    font-family: 'Courier Prime', monospace;
+    font-weight: bold;
+    font-size: 0.9rem;
+    padding: 6px 12px;
+    border: 2px solid var(--team-beta);
+    transform: rotate(2deg);
+    transition: all 0.3s ease;
+}
+
+.connection-status-tag.connected {
+    background-color: var(--bg-moss);
+    color: var(--team-alpha);
+}
+
+.connection-status-tag.disconnected {
+    background-color: var(--alert-crimson);
+    color: var(--team-alpha);
+    animation: statusPulse 1.5s infinite alternate;
+}
+
+@keyframes statusPulse {
+    0% { transform: rotate(2deg) scale(1); }
+    100% { transform: rotate(2deg) scale(1.05); }
+}
+
+/* Zine Grid System */
+.zine-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 25px;
+}
+
+@media (max-width: 1100px) {
+    .zine-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Custom Paper Card Components */
+.paper-card {
+    background-color: var(--paper-white);
+    border: 4px solid var(--team-beta);
+    box-shadow: 6px 6px 0px var(--team-beta);
+    padding: 20px;
+    position: relative;
+}
+
+/* Pitch Area */
+.pitch-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transform: rotate(0.2deg);
+}
+
+.card-header {
+    border-bottom: 2px solid var(--team-beta);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+}
+
+.marker-yellow {
+    background-color: var(--accent-yellow);
+    padding: 2px 6px;
+    font-family: 'Courier Prime', monospace;
+    font-weight: bold;
+    font-size: 0.8rem;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.canvas-wrapper {
+    width: 100%;
+    overflow: hidden;
+    border: 3px solid var(--team-beta);
+    background-color: var(--bg-moss);
+    position: relative;
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    background-color: var(--bg-moss);
+}
+
+.pitch-legend {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.85rem;
+    font-weight: bold;
+    padding-top: 10px;
+    border-top: 1px dotted var(--team-beta);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.legend-dot {
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--team-beta);
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.alpha-dot {
+    background-color: var(--team-alpha);
+    box-shadow: 2px 2px 0px var(--team-beta);
+}
+
+.beta-dot {
+    background-color: var(--team-beta);
+}
+
+.ball-dot {
+    background-color: var(--accent-yellow);
+    background-image: radial-gradient(var(--team-beta) 20%, transparent 20%);
+    background-size: 4px 4px;
+}
+
+/* Sidebar Columns */
+.sidebar-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Scoreboard Card */
+.scoreboard-card {
+    padding: 15px 25px;
+    transform: rotate(-1deg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.scrap-title {
+    font-family: 'Courier Prime', monospace;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    letter-spacing: 2px;
+}
+
+.scores {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.score-team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.score-team.alpha {
+    color: var(--bg-forest);
+}
+
+.score-team.beta {
+    color: var(--team-beta);
+}
+
+.team-name {
+    font-size: 0.8rem;
+    font-weight: 900;
+}
+
+.team-score {
+    font-family: 'Special Elite', monospace;
+    font-size: 3rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.score-divider {
+    font-size: 2.5rem;
+    font-weight: 900;
+}
+
+/* Dynamic Torn Crimson Paper Alert Scrap */
+.alert-scrap {
+    background-color: var(--alert-crimson);
+    color: var(--team-alpha);
+    border: 3px solid var(--team-beta);
+    box-shadow: 5px 5px 0px var(--team-beta);
+    padding: 15px;
+    transform: rotate(1.5deg);
+    position: relative;
+    overflow: hidden;
+}
+
+.alert-bg-stripe {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 6px;
+    height: 100%;
+    background-color: var(--accent-yellow);
+}
+
+.alert-content {
+    margin-left: 10px;
+}
+
+.alert-badge {
+    font-family: 'Courier Prime', monospace;
+    font-weight: bold;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background-color: var(--team-beta);
+    color: var(--team-alpha);
+    padding: 2px 6px;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.alert-message {
+    font-family: 'Special Elite', monospace;
+    font-size: 1.15rem;
+    line-height: 1.3;
+}
+
+/* Simulation Stats */
+.stats-card {
+    transform: rotate(-0.3deg);
+}
+
+.text-underlined {
+    text-decoration: underline;
+    text-decoration-style: double;
+}
+
+.stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.9rem;
+}
+
+.stats-table th {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: 0.85rem;
+    background-color: var(--team-beta);
+    color: var(--team-alpha);
+    padding: 4px;
+    text-align: center;
+}
+
+.stats-table td {
+    padding: 8px 4px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.stats-table td:nth-child(2) {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: var(--bg-forest);
+}
+
+.tick-counter {
+    margin-top: 15px;
+    text-align: right;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-top: 1px dashed var(--team-beta);
+    padding-top: 8px;
+}
+
+/* Chronicle Event Feed Card */
+.ticker-card {
+    transform: rotate(0.5deg);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.feed-wrapper {
+    height: 180px;
+    overflow-y: auto;
+    border: 2px solid var(--team-beta);
+    background-color: #ECE8DD; /* slight aged paper contrast */
+    padding: 10px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--bg-forest) #ECE8DD;
+}
+
+.feed-item {
+    border-bottom: 1px dotted rgba(0, 0, 0, 0.1);
+    padding-bottom: 4px;
+    line-height: 1.3;
+}
+
+.feed-item:first-child {
+    font-weight: bold;
+    color: var(--bg-forest);
+}
+
+/* Zine Footer */
+.zine-footer {
+    background-color: var(--paper-white);
+    border: 4px solid var(--team-beta);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.8rem;
+    transform: rotate(-0.2deg);
+    box-shadow: 4px 4px 0px var(--bg-forest);
+}
+
+@media (max-width: 768px) {
+    .zine-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+.footer-block {
+    max-width: 70%;
+    line-height: 1.4;
+}
+
+.credits {
+    white-space: nowrap;
+    font-weight: bold;
+}
+
+/* Alert Scrap Flash Animation */
+.flash-alert {
+    animation: alertShake 0.3s ease-out;
+    border-color: var(--accent-yellow) !important;
+}
+
+@keyframes alertShake {
+    0% { transform: rotate(1.5deg) scale(1); }
+    20% { transform: rotate(-1deg) scale(1.05); }
+    40% { transform: rotate(3deg) scale(1.05); }
+    60% { transform: rotate(-2deg) scale(1.03); }
+    80% { transform: rotate(2deg) scale(1.02); }
+    100% { transform: rotate(1.5deg) scale(1); }
+}
+
